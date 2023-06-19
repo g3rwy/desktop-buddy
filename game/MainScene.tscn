@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfmwkn3keu634"]
+
+[ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_rggni"]
+[ext_resource type="Texture2D" uid="uid://105afkfegd8f" path="res://icons/align-justify-svgrepo-com.svg" id="2_c8rvu"]
+[ext_resource type="Script" path="res://scripts/SettingsPopUp.gd" id="2_qtfln"]
+[ext_resource type="Texture2D" uid="uid://df4myfrfmbnvo" path="res://icons/chevron-down-svgrepo-com.svg" id="4_0pn3f"]
+
+[node name="MainUI" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.00131047
+script = ExtResource("1_rggni")
+
+[node name="PetName" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_right = 69.0
+offset_bottom = 34.0
+grow_horizontal = 2
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.870588, 0.396078, 0.882353, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47451)
+theme_override_font_sizes/font_size = 20
+text = "Tux"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="MenuButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.155
+anchor_bottom = 0.155
+tooltip_text = "Settings for pet"
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_c8rvu")
+flat = false
+expand_icon = true
+item_count = 1
+popup/item_0/text = "Change Pet name"
+popup/item_0/id = 0
+script = ExtResource("2_qtfln")
+
+[node name="MinimizeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.845
+anchor_right = 1.0
+anchor_bottom = 0.155
+grow_horizontal = 0
+tooltip_text = "Minimize window"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_0pn3f")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MinimizeButton" to="." method="_on_minimize_pressed"]

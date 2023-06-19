@@ -1,0 +1,5 @@
+.sconsign.dblite
+game/.godot
+game/bin
+**.import
+extension/src/*.os
