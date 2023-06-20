@@ -2,8 +2,17 @@ extends MenuButton
 
 var pop_up
 var change_name : LineEdit
+var embed_timer : Timer
+
+func _embed_timeout() -> void:
+	get_viewport().set_embedding_subwindows(true)
 
 func _ready() -> void:
+	embed_timer = Timer.new()
+	get_tree().get_root().add_child.call_deferred(embed_timer)
+	embed_timer.connect("timeout",_embed_timeout)
+	embed_timer.one_shot = true
+	
 	pop_up = get_popup()
 	pop_up.connect("id_pressed",_on_id_pressed)
 
@@ -33,9 +42,27 @@ func _on_id_pressed(id: int) -> void:
 			anim_name.add_child(button)
 			
 			anim_name.show()
+		1:
+			get_viewport().set_embedding_subwindows(false)
+			var filepath = FileDialog.new()
+			filepath.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+			filepath.size = Vector2i(700,500)
+			filepath.set_filters(PackedStringArray(["*.json ; JSON file"]))
+			
+			filepath.connect("file_selected", _file_choosen)
+			
+			get_tree().get_root().add_child(filepath)
+			filepath.show()
 		_:
 			print("WHAT")
 
+func _file_choosen(path : String) -> void:
+	print(path)
+	Globals.load_data(path)
+	embed_timer.start(1.1) # Arbitrary solution, i can't straight away set embedding_subwindows to true so i need a little bit of time after
+
+
+	
 func _on_popup_closed() -> void:
 	var new_name = change_name.text.lstrip(" \t")
 	if new_name.is_empty():

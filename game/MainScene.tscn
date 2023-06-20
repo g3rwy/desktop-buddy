@@ -46,9 +46,11 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("2_c8rvu")
 flat = false
 expand_icon = true
-item_count = 1
+item_count = 2
 popup/item_0/text = "Change Pet name"
 popup/item_0/id = 0
+popup/item_1/text = "Load Animations"
+popup/item_1/id = 1
 script = ExtResource("2_qtfln")
 
 [node name="MinimizeButton" type="Button" parent="."]
