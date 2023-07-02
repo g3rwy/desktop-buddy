@@ -2,7 +2,6 @@
 
 #include "tray_src.h"
 
-
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <memory>
@@ -24,6 +23,7 @@ void VirtualPet::_start_tray(){
     UtilityFunctions::print("Oh okay so i should stop");
     stop_tray = true;
     // TODO Signal to main thread to exit
+    emit_signal("close_window");
     return;
 }
 
@@ -56,4 +56,5 @@ void VirtualPet::_bind_methods()
     ClassDB::bind_method(D_METHOD("set_stop_tray","val"), &VirtualPet::set_stop_tray);
     ClassDB::bind_method(D_METHOD("get_stop_tray"), &VirtualPet::get_stop_tray);
     ADD_PROPERTY(PropertyInfo( Variant::BOOL, "group_atomic" ), "set_stop_tray", "get_stop_tray");
+    ADD_SIGNAL(MethodInfo("close_window"));
 }

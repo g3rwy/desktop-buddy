@@ -45,6 +45,7 @@ func _on_id_pressed(id: int) -> void:
 		1:
 			get_viewport().set_embedding_subwindows(false)
 			var filepath = FileDialog.new()
+			filepath.access = FileDialog.ACCESS_FILESYSTEM
 			filepath.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 			filepath.size = Vector2i(700,500)
 			filepath.set_filters(PackedStringArray(["*.json ; JSON file"]))

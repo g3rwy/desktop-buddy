@@ -15,13 +15,10 @@ extern "C" {
   #if TRAY_APPINDICATOR
   // #define TRAY_ICON1 "mail-message-new"
   #define TRAY_ICON1 "face-monkey"
-  #define TRAY_ICON2 "mail-message-new"
   #elif TRAY_APPKIT
   #define TRAY_ICON1 "icon.png"
-  #define TRAY_ICON2 "icon.png"
   #elif TRAY_WINAPI
   #define TRAY_ICON1 "icon.ico"
-  #define TRAY_ICON2 "icon.ico"
   #endif
 
 
@@ -29,6 +26,7 @@ extern "C" {
   static void show_cb(struct tray_menu *item);
   static void submenu_cb(struct tray_menu *item);
   static void quit_cb(struct tray_menu *item);
+  static int quit_status = 0;
 
   static struct tray tray = {
       .icon = TRAY_ICON1,
@@ -56,6 +54,7 @@ extern "C" void show_cb(struct tray_menu *item) {
   tray_update(&tray);
 }
 
+
 extern "C" {
   static void toggle_cb(struct tray_menu *item) {
     printf("toggle cb\n");
@@ -64,9 +63,8 @@ extern "C" {
   }
 
   static void quit_cb(struct tray_menu *item) {
-    (void)item;
-    printf("quit cb\n");
-    tray_exit();
+      (void)item;
+      tray_exit();
   }
 
   static void submenu_cb(struct tray_menu *item) {

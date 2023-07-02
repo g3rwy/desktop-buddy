@@ -8,6 +8,9 @@ func _init() -> void:
 	tray_ref = VirtualPet.new()
 	tray_thread = Thread.new()
 	tray_thread.start(tray_ref._start_tray)
+	
+	tray_ref.connect("close_window", func (): get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST) )
+
 
 func destroy_thread():
 	tray_ref.set_stop_tray(true)

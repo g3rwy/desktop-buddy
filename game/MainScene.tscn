@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfmwkn3keu634"]
+[gd_scene load_steps=7 format=3 uid="uid://dfmwkn3keu634"]
 
+[ext_resource type="Theme" uid="uid://cgep6kt70n1s5" path="res://resources/default_theme.tres" id="1_kogbs"]
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_rggni"]
 [ext_resource type="Texture2D" uid="uid://105afkfegd8f" path="res://icons/align-justify-svgrepo-com.svg" id="2_c8rvu"]
 [ext_resource type="Script" path="res://scripts/SettingsPopUp.gd" id="2_qtfln"]
 [ext_resource type="Texture2D" uid="uid://df4myfrfmbnvo" path="res://icons/chevron-down-svgrepo-com.svg" id="4_0pn3f"]
+[ext_resource type="Script" path="res://scripts/Pet.gd" id="5_jb226"]
 
 [node name="MainUI" type="Control"]
 layout_direction = 1
@@ -14,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.00131047
+theme = ExtResource("1_kogbs")
 script = ExtResource("1_rggni")
 
 [node name="PetName" type="Label" parent="."]
@@ -63,8 +66,15 @@ grow_horizontal = 0
 tooltip_text = "Minimize window"
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_kogbs")
 icon = ExtResource("4_0pn3f")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Pet" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(100, 110)
+script = ExtResource("5_jb226")
 
 [connection signal="pressed" from="MinimizeButton" to="." method="_on_minimize_pressed"]
